@@ -1,38 +1,236 @@
-.App {
-  text-align: center;
+/* =================== Global =================== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #121212;
+  color: #eee;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container-main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    text-align: center;
+    color: #4af;
+    text-shadow: 0 0 6px #4af, 0 0 12px #4af;
   }
-  to {
-    transform: rotate(360deg);
+
+  .info-text {
+    max-width: 800px;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    color: #ccc;
+  }
+
+  footer {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: #666;
+  }
+}
+
+/* =================== Layout =================== */
+.main-content {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  width: 100%;
+  justify-content: center;
+}
+
+/* ===== Canvas + Planet Buttons ===== */
+.canvas-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .canvas-pendel {
+    display: block;
+    max-width: 95vw;
+    width: 900px;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    box-shadow: 0 0 25px rgba(0, 170, 255, 0.5);
+    border: 1px solid #4af;
+  }
+
+  .planet-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    .btn-planet {
+      margin: 2px;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      background: #ff6600;
+      color: #fff;
+      transition: all 0.2s;
+      box-shadow: 0 0 4px #ff6600, 0 0 8px #ff8800;
+
+      &:hover {
+        background: #ff8800;
+        box-shadow: 0 0 8px #ff8800, 0 0 16px #ffaa00;
+      }
+
+      &.active {
+        background: #ffa500;
+        box-shadow: 0 0 12px #ffa500, 0 0 20px #ffc000;
+      }
+    }
+  }
+}
+
+/* ===== Random Numbers Panel ===== */
+.random-panel {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  width: 25%;
+  gap: 12px;
+
+  .btn-random-wrapper {
+    display: flex;
+    justify-content: flex-end;
+
+    .btn-random {
+      background: #222;
+      color: #4af;
+      border: 1px solid #4af;
+      border-radius: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-shadow: 0 0 4px #4af;
+      box-shadow: 0 0 8px #4af, 0 0 12px rgba(0, 170, 255, 0.6);
+      transition: all 0.2s;
+
+      &:hover {
+        background: #4af;
+        color: #fff;
+        box-shadow: 0 0 12px #4af, 0 0 20px rgba(0, 170, 255, 0.7);
+      }
+    }
+  }
+
+  .random-number-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+
+    .random-number {
+      display: flex;
+      justify-content: space-between;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 0.9rem;
+      align-items: center;
+      border: 1px solid #4af;
+      box-shadow: 0 0 6px #4af, 0 0 12px rgba(0, 170, 255, 0.5);
+
+      span {
+        color: #4af;
+        text-shadow: 0 0 4px #4af;
+      }
+
+      button {
+        font-size: 0.8rem;
+        padding: 2px 6px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        background: #222;
+        color: #4af;
+        border: 1px solid #4af;
+        box-shadow: 0 0 4px #4af, 0 0 8px rgba(0, 170, 255, 0.5);
+        transition: all 0.2s;
+
+        &:hover {
+          background: #4af;
+          color: #fff;
+          box-shadow: 0 0 8px #4af, 0 0 16px rgba(0, 170, 255, 0.7);
+        }
+      }
+    }
+  }
+}
+
+/* =================== Animation Buttons =================== */
+.btn-animation-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+
+  .btn-animation {
+    background: #222;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 14px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    box-shadow: 0 0 6px #4af, 0 0 12px rgba(0, 170, 255, 0.4);
+
+    &:hover {
+      background: #4af;
+      color: #fff;
+      box-shadow: 0 0 12px #4af, 0 0 20px rgba(0, 170, 255, 0.7);
+    }
+  }
+}
+
+/* =================== Responsive =================== */
+@media (max-width: 1024px) {
+  .main-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .random-panel {
+    width: 90%;
+    max-width: none;
+    margin-top: 16px;
+  }
+
+  .canvas-wrapper {
+    align-items: center;
+
+    .planet-selector {
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .canvas-pendel {
+    width: 100%;
+  }
+
+  .btn-animation-wrapper,
+  .btn-random-wrapper {
+    flex-direction: column;
+    gap: 8px;
   }
 }

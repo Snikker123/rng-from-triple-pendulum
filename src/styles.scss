@@ -1,0 +1,351 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #121212;
+  color: #eee;
+}
+
+.container-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  .info-text {
+    max-width: 800px;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 24px;
+    color: #ccc;
+  }
+
+  footer {
+    margin-top: 40px;
+    font-size: 0.8rem;
+    color: #666;
+  }
+}
+
+.main-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* =================== Layout Container =================== */
+.pendulum-main-layout {
+  display: flex;
+  flex-direction: row; // Canvas links, Numbers rechts
+  gap: 30px;
+  align-items: flex-start;
+  max-width: 1300px;
+  width: 100%;
+
+  /* Linke Spalte: Start/Stop -> Canvas -> Planeten */
+  .left-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; // Alles untereinander linksbündig
+    flex: 0 0 auto;
+
+    .btn-animation-wrapper {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+
+      .btn-animation {
+        background: #222;
+        color: #fff;
+        border: 1px solid #444;
+        border-radius: 6px;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: background 0.2s;
+        &:hover { background: #4af; }
+      }
+    }
+
+    .canvas-pendel {
+      display: block;
+      width: 900px;
+      height: 700px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+      background: #000;
+    }
+
+    .planet-selector {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+
+      .btn-planet {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        background: #333;
+        color: #fff;
+        transition: all 0.2s;
+
+        &:hover { background: #444; }
+        &.active {
+          background: #ff6600;
+          box-shadow: 0 0 10px rgba(255, 102, 0, 0.4);
+        }
+      }
+    }
+  }
+
+  /* Rechte Spalte: Random Button -> Liste */
+  .right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  min-width: 250px;
+
+  .random-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .btn-random {
+      width: 100%;
+      background: #4090ff;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 12px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      &:hover { background: #3070dd; }
+    }
+
+    .dimension-toggle {
+      display: flex;
+      gap: 8px;
+
+      button {
+        flex: 1;
+        padding: 6px;
+        border-radius: 6px;
+        border: 1px solid #444;
+        background: #222;
+        color: #fff;
+        cursor: pointer;
+        &.active { background: #4090ff; border-color: #4090ff; }
+      }
+    }
+
+    .range-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      label {
+        font-size: 0.85rem;
+        color: #ccc;
+      }
+
+      input {
+        width: 80px;
+        padding: 6px;
+        background: #111;
+        border: 1px solid #444;
+        border-radius: 6px;
+        color: #fff;
+        text-align: center;
+      }
+
+      span {
+        color: #aaa;
+        margin: 0 6px;
+      }
+
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .random-number-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 700px;
+    overflow-y: auto;
+    padding-right: 5px;
+
+    .random-number {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 6px;
+      padding: 10px;
+      font-family: monospace;
+      font-size: 0.95rem;
+
+      button {
+        background: #333;
+        border: none;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        &:hover { background: #4af; }
+      }
+    }
+  }
+}
+
+}
+.random-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dimension-toggle {
+  display: flex;
+  gap: 8px;
+
+  button {
+    flex: 1;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background: #222;
+    color: #fff;
+    cursor: pointer;
+
+    &.active {
+      background: #4090ff;
+      border-color: #4090ff;
+    }
+  }
+}
+
+.range-inputs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  input {
+    width: 80px;
+    padding: 6px;
+    background: #111;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #fff;
+    text-align: center;
+  }
+
+  span {
+    color: #aaa;
+    font-size: 0.9rem;
+  }
+}
+.figures-panel {
+  width: 95%;
+  max-width: 1300px;
+  margin: 40px auto 0 auto; // Abstand nach oben
+  padding: 20px;
+  background: #1b1b1b; // leicht abgehobene Farbe
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  h2 {
+    margin: 0 0 12px 0;
+    color: #ccc;
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .figures-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+
+    img {
+      max-width: 400px;
+      max-height: 300px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      object-fit: contain;
+      transition: transform 0.2s, box-shadow 0.2s;
+
+      &:hover {
+        transform: scale(3);
+        box-shadow: 0 0 15px rgba(64, 144, 255, 0.5);
+      }
+    }
+  }
+}
+
+/* Responsive für kleine Bildschirme */
+@media (max-width: 768px) {
+  .figures-panel {
+    padding: 12px;
+
+    .figures-grid {
+      gap: 10px;
+
+      img {
+        max-width: 45%;
+        max-height: 140px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .figures-panel {
+    .figures-grid {
+      img {
+        max-width: 90%;
+        max-height: 240px;
+      }
+    }
+  }
+}
+
+
+/* =================== Responsive =================== */
+@media (max-width: 1250px) {
+  .pendulum-main-layout {
+    flex-direction: column;
+    align-items: center;
+
+    .left-column {
+      align-items: center;
+      .canvas-pendel {
+        width: 95vw;
+        height: auto;
+      }
+    }
+
+    .right-column {
+      width: 95vw;
+    }
+  }
+}
